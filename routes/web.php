@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardBookController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardDiscountController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\DashboardFotoController;
 use Illuminate\Database\Schema\IndexDefinition;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -75,3 +76,6 @@ Route::resource('/dashboard/categories', DashboardCategoryController::class)->mi
 
 Route::resource('/dashboard/discounts', DashboardDiscountController::class)->middleware('auth');
 
+Route::post('cart', [KeranjangController::class,'tambah'])->name('front.cart');
+
+Route::get('/cart', [KeranjangController::class,'listCart'])->name('front.list_cart');
