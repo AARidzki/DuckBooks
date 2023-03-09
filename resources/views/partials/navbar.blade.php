@@ -39,6 +39,10 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link {{ $tittle === 'Cart' ? 'active' : '' }}" aria-current="page"
+                        href="/cart"> <i class="bi bi-cart"></i> </a>
+                </li>
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
