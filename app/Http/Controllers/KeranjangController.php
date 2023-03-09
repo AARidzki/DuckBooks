@@ -42,14 +42,18 @@ public function listCart()
 {
     //MENGAMBIL DATA DARI COOKIE
     $keranjang = json_decode(request()->cookie('buku-keranjang'), true);
-    $token=request()->cookie('buku-keranjang');
-    dd($token);
+    //$carts=request()->cookie('buku-keranjang');
+    
     //UBAH ARRAY MENJADI COLLECTION, KEMUDIAN GUNAKAN METHOD SUM UNTUK MENGHITUNG SUBTOTAL
     $subtotal = collect($keranjang)->sum(function($q) {
         return $q['qty'] * $q['price']; //SUBTOTAL TERDIRI DARI QTY * PRICE
     });
     //LOAD VIEW CART.BLADE.PHP DAN PASSING DATA CARTS DAN SUBTOTAL
-    return view('keranjang')->with(compact('keranjang', 'subtotal'));
+    $carts=$keranjang;
+    return view('keranjang',[
+        'tittle'=>"jdudul",
+        'active' => 'login',
+    ])->with(compact('carts', 'subtotal'));
 }
 
 }
