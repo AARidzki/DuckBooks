@@ -8,7 +8,6 @@
 				<div class="banner_content text-center">
 					<h2>Keranjang Belanja</h2>
 					<div class="page_link">
-                        <a href="{{ url('/') }}">Home</a>
                         <a href="{{ route('front.list_cart') }}">Cart</a>
 					</div>
 				</div>
