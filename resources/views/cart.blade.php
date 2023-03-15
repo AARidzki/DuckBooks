@@ -7,8 +7,8 @@
 			<div class="container">
 				<div class="banner_content text-center">
 					<h2>Keranjang Belanja</h2>
-					<div class="page_link">
-                        <a href="{{ route('front.list_cart') }}">Cart</a>
+					<div class="page_link mb-5">
+                        {{-- <a href="{{ route('front.list_cart') }}">Cart</a> --}}
 					</div>
 				</div>
 			</div>
@@ -70,11 +70,11 @@
                     
 										<button onclick="var result = document.getElementById('sst{{ $row['id'] }}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 										 class="increase items-count" type="button">
-											<i class="lnr lnr-chevron-up"></i>
+											 <i class="bi bi-chevron-up"></i>
 										</button>
 										<button onclick="var result = document.getElementById('sst{{ $row['id'] }}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 										 class="reduced items-count" type="button">
-											<i class="lnr lnr-chevron-down"></i>
+										 	<i class="bi bi-chevron-down"></i>
 										</button>
 									</div>
 								</td>

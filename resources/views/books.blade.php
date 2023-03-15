@@ -1,5 +1,5 @@
 @extends('layouts.main')
-dd()
+
 @section('container')
     <h1 class="mb-3">Buku Rekomendasi</h1>
 
