@@ -3,6 +3,7 @@
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -76,6 +77,6 @@ Route::resource('/dashboard/categories', DashboardCategoryController::class)->mi
 
 Route::resource('/dashboard/discounts', DashboardDiscountController::class)->middleware('auth');
 
-Route::post('cart', [KeranjangController::class,'tambah'])->name('front.cart');
+Route::post('cart', [CartController::class,'tambah'])->name('front.cart');
 
-Route::get('/cart', [KeranjangController::class,'listCart'])->name('front.list_cart');
+Route::get('/cart', [CartController::class,'listCart'])->name('front.list_cart');

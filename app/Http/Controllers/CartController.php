@@ -50,8 +50,8 @@ public function listCart()
     });
     //LOAD VIEW CART.BLADE.PHP DAN PASSING DATA CARTS DAN SUBTOTAL
     $carts=$cart;
-    return view('carts',[
-        'tittle'=>"judul",
+    return view('cart',[
+        'tittle'=>"Cart",
         'active' => 'login',
     ])->with(compact('carts', 'subtotal'));
 }
