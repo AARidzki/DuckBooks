@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
+use App\Province;
 use App\Models\Book;
 
 
@@ -17,7 +18,7 @@ public function tambah(Request $request){
         'qty'=> 'required|integer'
     ]);
 
-    $cart=json_decode($request->cookie('buku-keranjang'),true);
+    $cart = $this->getCarts();
   
     if($cart&& array_key_exists($request->id,$cart)){
         $cart[$request->id]['qty'] +=$request->qty;
@@ -41,7 +42,7 @@ $cookie = Cookie::queue('buku-keranjang', json_encode($cart), 2880);
 public function listCart()
 {
     //MENGAMBIL DATA DARI COOKIE
-    $cart = json_decode(request()->cookie('buku-keranjang'), true);
+    $cart = $this->getCarts();
     //$carts=request()->cookie('buku-keranjang');
     
     //UBAH ARRAY MENJADI COLLECTION, KEMUDIAN GUNAKAN METHOD SUM UNTUK MENGHITUNG SUBTOTAL
@@ -55,5 +56,14 @@ public function listCart()
         'active' => 'login',
     ])->with(compact('carts', 'subtotal'));
 }
+
+private function getCarts()
+{
+    $cart = json_decode(request()->cookie('buku-keranjang'), true);
+    $cart = $cart != '' ? $cart:[];
+    return $cart;
+}
+
+
 
 }
