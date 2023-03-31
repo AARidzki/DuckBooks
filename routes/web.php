@@ -52,9 +52,11 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/books', [BookController::class, 'index']);
+Route::controller(BookController::class)->group(function() {
+    Route::get('/books', [BookController::class, 'index']);
+    Route::get('/books/{book}', [BookController::class, 'show']);
+});
 
-Route::get('/books/{book}', [BookController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 
@@ -80,3 +82,8 @@ Route::resource('/dashboard/discounts', DashboardDiscountController::class)->mid
 Route::post('cart', [CartController::class,'tambah'])->name('front.cart');
 
 Route::get('/cart', [CartController::class,'listCart'])->name('front.list_cart');
+
+Route::post('/cart/update', [CartController::class,'updateCart'])->name('front.update_cart');
+
+
+

@@ -24,7 +24,7 @@
         <!-- DISABLE BAGIAN INI JIKA INGIN MELIHAT HASILNYA TERLEBIH DAHULU -->
         <!-- KARENA MODULENYA AKAN DIKERJAKAN PADA SUB BAB SELANJUTNYA -->
         <!-- HANYA SAJA DEMI KEMUDAHAN PENULISAN MAKA SAYA MASUKKAN PADA BAGIAN INI -->
-                <form action="/" method="post">
+                <form action="{{ route('front.update_cart') }}" method="post">
                     @csrf
         <!-- DISABLE BAGIAN INI JIKA INGIN MELIHAT HASILNYA TERLEBIH DAHULU -->
                   
@@ -64,7 +64,7 @@
                     
                     <!-- PERHATIKAN BAGIAN INI, NAMENYA KITA GUNAKAN ARRAY AGAR BISA MENYIMPAN LEBIH DARI 1 DATA -->
                                         <input type="text" name="qty[]" id="sst{{ $row['id'] }}" maxlength="12" value="{{ $row['qty'] }}" title="Quantity:" class="input-text qty">
-                                        <input type="hidden" name="id[]" value="{{ $row['id'] }}" class="form-control">
+                                        <input type="hidden" name="id[]" value="{{ $row['id'] }}" class="form-control id">
                     <!-- PERHATIKAN BAGIAN INI, NAMENYA KITA GUNAKAN ARRAY AGAR BISA MENYIMPAN LEBIH DARI 1 DATA -->
                     
                     
@@ -154,7 +154,7 @@
 								<td></td>
 								<td>
 									<div class="checkout_btn_inner">
-										<a class="gray_btn" href="#">Continue Shopping</a>
+										<a class="gray_btn" href="/books">Continue Shopping</a>
 										<a class="main_btn" href="#">Proceed to checkout</a>
 									</div>
 								</td>
@@ -167,3 +167,23 @@
 	</section>
 	<!--================End Cart Area =================-->
 	@endsection
+
+	{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		let qty = document.getElementByClassName('qty')
+		let id = document.getElementByClassName('id')
+
+		console.log(qty);
+	  $("button").click(function(){
+		$.post("/cart/update",
+		{
+		  qty: qty,
+		  id: id
+		},
+		function(data,status){
+		  alert("Data: " + data + "\nStatus: " + status);
+		});
+	  });
+	});
+	</script> --}}

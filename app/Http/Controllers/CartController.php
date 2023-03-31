@@ -57,12 +57,35 @@ public function listCart()
     ])->with(compact('carts', 'subtotal'));
 }
 
+public function updateCart(Request $request)
+{
+    //AMBIL DATA DARI COOKIE
+    $carts = json_decode(request()->cookie('buku-keranjang'), true);
+    //KEMUDIAN LOOPING DATA PRODUCT_ID, KARENA NAMENYA ARRAY PADA VIEW SEBELUMNYA
+    //MAKA DATA YANG DITERIMA ADALAH ARRAY SEHINGGA BISA DI-LOOPING
+    foreach ($request->id as $key => $row) {
+        //DI CHECK, JIKA QTY DENGAN KEY YANG SAMA DENGAN PRODUCT_ID = 0
+        if ($request->qty[$key] == 0) {
+            //MAKA DATA TERSEBUT DIHAPUS DARI ARRAY
+            unset($carts[$row]);
+        } else {
+            //SELAIN ITU MAKA AKAN DIPERBAHARUI
+            $carts[$row]['qty'] = $request->qty[$key];
+        }
+    }
+    //SET KEMBALI COOKIE-NYA SEPERTI SEBELUMNYA
+    $cookie = cookie('buku-keranjang', json_encode($carts), 2880);
+    //DAN STORE KE BROWSER.
+    return redirect()->back()->cookie($cookie);
+}
+
 private function getCarts()
 {
     $cart = json_decode(request()->cookie('buku-keranjang'), true);
     $cart = $cart != '' ? $cart:[];
     return $cart;
 }
+
 
 
 
