@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardBookController;
@@ -85,5 +86,6 @@ Route::get('/cart', [CartController::class,'listCart'])->name('front.list_cart')
 
 Route::post('/cart/update', [CartController::class,'updateCart'])->name('front.update_cart');
 
+Route::get('/checkout', [CartController::class,'checkout']);
 
 

@@ -86,7 +86,19 @@ private function getCarts()
     return $cart;
 }
 
-
+public function checkout()
+{
+    $carts = $this->getCarts(); //MENGAMBIL DATA CART
+    //MENGHITUNG SUBTOTAL DARI KERANJANG BELANJA (CART)
+    $subtotal = collect($carts)->sum(function($q) {
+        return $q['qty'] * $q['price'];
+    });
+    //ME-LOAD VIEW CHECKOUT.BLADE.PHP DAN PASSING DATA PROVINCES, CARTS DAN SUBTOTAL
+    return view('checkout', [
+        'tittle' => 'Cart',
+        'active' => 'login'
+    ])->with(compact('carts', 'subtotal'));
+}
 
 
 }
