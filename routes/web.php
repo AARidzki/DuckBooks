@@ -88,4 +88,8 @@ Route::post('/cart/update', [CartController::class,'updateCart'])->name('front.u
 
 Route::get('/checkout', [CartController::class,'checkout']);
 
+Route::post('/checkout', [CartController::class,'processCheckout'])->name('front.store_checkout');
+
+Route::get('/checkout/{invoice}', [CartController::class,'checkoutFinish'])->name('front.finish_checkout');
+
 

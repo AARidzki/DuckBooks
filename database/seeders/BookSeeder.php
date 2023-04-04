@@ -21,7 +21,7 @@ class BookSeeder extends Seeder
             'pengarang' => 'George',
             'terbit' => '2010',
             'stok' => '0',
-            'harga' => '70.0000',
+            'harga' => '70000',
             'category_id' => '1'
         ]);
         Book::create([
@@ -30,7 +30,16 @@ class BookSeeder extends Seeder
             'pengarang' => 'Oda',
             'terbit' => '1999',
             'stok' => '0',
-            'harga' => '30.0000',
+            'harga' => '30000',
+            'category_id' => '2'
+        ]);
+        Book::create([
+            'tittle' => 'Naruto',
+            'kode_buku' => 'KM00002',
+            'pengarang' => 'Masashi Kishimoto',
+            'terbit' => '1999',
+            'stok' => '0',
+            'harga' => '30000',
             'category_id' => '2'
         ]);
     }
