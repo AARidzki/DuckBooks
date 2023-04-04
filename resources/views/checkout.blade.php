@@ -5,12 +5,16 @@
 <div class="row">
     <div class="col-md-6">
     <h1>Informasi Pengiriman</h1>
-        <form action="" method="POST">
+    @if (session('error'))
+                  <div class="alert alert-danger">{{ session('error') }}</div>
+              @endif
+        <form action="{{ route('front.store_checkout') }}" method="POST">
             @csrf
-            <input type="text" class="form-control mb-3" name="name" placeholder="Nama Lengkap">
-            <input type="text" class="form-control mb-3" name="notelp" placeholder="No Telepon">
-            <input type="text" class="form-control mb-3" name="email" placeholder="Email">
-            <input type="text" class="form-control mb-3" name="alamat" placeholder="Alamat Lengkap">
+            <input type="text" class="form-control mb-3" name="customer_name" placeholder="Nama Lengkap" required>
+            <p class="text-danger">{{ $errors->first('customer_name') }}</p>
+            <input type="text" class="form-control mb-3" name="customer_phone" placeholder="No Telepon" required>
+            <input type="text" class="form-control mb-3" name="email" placeholder="Email" required>
+            <input type="text" class="form-control mb-3" name="customer_address" placeholder="Alamat Lengkap" required>
         </div>
     </div>
 
