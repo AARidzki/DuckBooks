@@ -122,12 +122,14 @@ public function processCheckout(Request $request)
     DB::beginTransaction();
     try {
         //CHECK DATA CUSTOMER BERDASARKAN EMAIL
-        $customer = Customer::where('email', $request->email)->first();
+        // $customer = Customer::where('email', $request->email)->first();
+        
         //JIKA DIA TIDAK LOGIN DAN DATA CUSTOMERNYA ADA
-        if (!auth()->check() && $customer) {
-            //MAKA REDIRECT DAN TAMPILKAN INSTRUKSI UNTUK LOGIN 
-            return redirect()->back()->with(['error' => 'Silahkan Login Terlebih Dahulu']);
-        }
+        // if (!auth()->check() && $customer) {
+        
+        //     //MAKA REDIRECT DAN TAMPILKAN INSTRUKSI UNTUK LOGIN 
+        //     return redirect()->back()->with(['error' => 'Silahkan Login Terlebih Dahulu']);
+        // }
 
         //AMBIL DATA KERANJANG
         $carts = $this->getCarts();
@@ -188,9 +190,12 @@ public function processCheckout(Request $request)
 public function checkoutFinish($invoice)
 {
     //AMBIL DATA PESANAN BERDASARKAN INVOICE
-    $order = Order::with(['customer.address'])->where('invoice', $invoice)->first();
+    $order = Order::where('invoice', $invoice)->first();
     //LOAD VIEW checkout_finish.blade.php DAN PASSING DATA ORDER
-    return view('ecommerce.checkout_finish', compact('order'));
+    return view('checkout_finish', [
+        'tittle' => 'Cart',
+        'active' => 'login'
+    ])->with(compact('order'));
 }
 
 

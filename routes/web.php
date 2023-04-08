@@ -86,7 +86,7 @@ Route::get('/cart', [CartController::class,'listCart'])->name('front.list_cart')
 
 Route::post('/cart/update', [CartController::class,'updateCart'])->name('front.update_cart');
 
-Route::get('/checkout', [CartController::class,'checkout']);
+Route::get('/checkout', [CartController::class,'checkout'])->middleware('auth');
 
 Route::post('/checkout', [CartController::class,'processCheckout'])->name('front.store_checkout');
 
