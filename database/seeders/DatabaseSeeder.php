@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'AA Ridzki',
             'username' => 'AnggerLaw',
             'email' => 'AA@gmail.com',
+            'is_admin' => '1',
             'password' => bcrypt('password')
         ]);
 
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Yoga Anjing',
             'username' => 'Yoga',
             'email' => 'yoganj@gmail.com',
+            'is_admin' => '0',
             'password' => bcrypt('password')
         ]);
         
@@ -37,6 +39,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Rahul Babi',
             'username' => 'Rahul',
             'email' => 'rabab@gmail.com',
+            'is_admin' => '0',
             'password' => bcrypt('password')
         ]);
 

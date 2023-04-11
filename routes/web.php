@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardDiscountController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\DashboardFotoController;
+use App\Http\Controllers\DashboardOrderController;
 use Illuminate\Database\Schema\IndexDefinition;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -91,5 +92,7 @@ Route::get('/checkout', [CartController::class,'checkout'])->middleware('auth');
 Route::post('/checkout', [CartController::class,'processCheckout'])->name('front.store_checkout');
 
 Route::get('/checkout/{invoice}', [CartController::class,'checkoutFinish'])->name('front.finish_checkout');
+
+Route::get('/dashboard/orders', [DashboardOrderController::class,'index'])->name('customer.orders')->middleware('auth');
 
 

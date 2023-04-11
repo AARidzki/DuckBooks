@@ -139,7 +139,7 @@ public function processCheckout(Request $request)
         });
 
         //SIMPAN DATA CUSTOMER BARU
-        $customer = Customer::create([
+        $customers = Customer::create([
             'name' => $request->customer_name,
             'email' => $request->email,
             'notelp' => $request->customer_phone,
@@ -148,10 +148,10 @@ public function processCheckout(Request $request)
         ]);
 
         //SIMPAN DATA ORDER
-        $order = Order::create([
+        $orders = Order::create([
             'invoice' => Str::random(4) . '-' . time(), //INVOICENYA KITA BUAT DARI STRING RANDOM DAN WAKTU
-            'customer_id' => $customer->id,
-            'customer_name' => $customer->name,
+            'customer_id' => $customers->id,
+            'customer_name' => $customers->name,
             'customer_phone' => $request->customer_phone,
             'customer_address' => $request->customer_address,
             'subtotal' => $subtotal
@@ -163,7 +163,7 @@ public function processCheckout(Request $request)
             $buku = Book::find($row['id']);
             //SIMPAN DETAIL ORDER
             OrderDetail::create([
-                'order_id' => $order->id,
+                'order_id' => $orders->id,
                 'book_id' => $row['id'],
                 'price' => $row['price'],
                 'qty' => $row['qty'],
@@ -178,7 +178,7 @@ public function processCheckout(Request $request)
         //KOSONGKAN DATA KERANJANG DI COOKIE
         $cookie = cookie('buku-keranjang', json_encode($carts), 2880);
         //REDIRECT KE HALAMAN FINISH TRANSAKSI
-        return redirect(route('front.finish_checkout', $order->invoice))->cookie($cookie);
+        return redirect(route('front.finish_checkout', $orders->invoice))->cookie($cookie);
     } catch (\Exception $e) {
         //JIKA TERJADI ERROR, MAKA ROLLBACK DATANYA
         DB::rollback();
@@ -190,12 +190,12 @@ public function processCheckout(Request $request)
 public function checkoutFinish($invoice)
 {
     //AMBIL DATA PESANAN BERDASARKAN INVOICE
-    $order = Order::where('invoice', $invoice)->first();
+    $orders = Order::where('invoice', $invoice)->first();
     //LOAD VIEW checkout_finish.blade.php DAN PASSING DATA ORDER
     return view('checkout_finish', [
         'tittle' => 'Cart',
         'active' => 'login'
-    ])->with(compact('order'));
+    ])->with(compact('orders'));
 }
 
 

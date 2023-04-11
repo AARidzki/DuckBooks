@@ -6,7 +6,7 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 
-class OrderController extends Controller
+class DashboardOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.orders.index', [
+            'orders' => Order::where('user_id', auth()->user()->id)->get()
+        ]);
+
+        // $orders = Order::where('user_id', auth()->guard('customer')->user()->id)->orderBy('created_at', 'DESC')->paginate(10);
+        // return view('dashboard.orders.index', compact('orders'));
     }
 
     /**
@@ -45,9 +50,11 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($invoice)
     {
-        //
+        $order = Order::with(['details', 'details.product', 'payment'])
+        ->where('invoice', $invoice)->first();
+        return view('dashboard.orders.show', compact('orders'));
     }
 
     /**

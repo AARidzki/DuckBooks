@@ -28,15 +28,15 @@
                     <ul class="list">
                         <li>
                             <a href="#">
-                                <span>Invoice</span> : {{ $order->invoice }}</a>
+                                <span>Invoice</span> : {{ $orders->invoice }}</a>
                         </li>
                         <li>
                             <a href="#">
-                                <span>Tanggal</span> : {{ $order->created_at }}</a>
+                                <span>Tanggal</span> : {{ $orders->created_at }}</a>
                         </li>
                         <li>
                             <a href="#">
-                                <span>Total</span> : Rp {{ number_format($order->subtotal) }}</a>
+                                <span>Total</span> : Rp {{ number_format($orders->subtotal) }}</a>
                         </li>
                     </ul>
                 </div>
@@ -47,7 +47,7 @@
                     <ul class="list">
                         <li>
                             <a href="#">
-                                <span>Alamat</span> : {{ $order->customer_address }}</a>
+                                <span>Alamat</span> : {{ $orders->customer_address }}</a>
                         </li>
                         <li>
                             <a href="#">
