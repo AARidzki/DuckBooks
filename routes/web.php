@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardDiscountController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\DashboardFotoController;
 use App\Http\Controllers\DashboardOrderController;
+use App\Http\Controllers\DashboardUserController;
 use Illuminate\Database\Schema\IndexDefinition;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -75,7 +76,7 @@ Route::get('/dashboard', function() {
     return view('dashboard.index');
 })->middleware('auth');
 
-Route::resource('/dashboard/books', DashboardBookController::class)->middleware('auth');
+Route::resource('/dashboard/books', DashboardBookController::class)->except('show')->middleware('admin');
 
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth');
 
@@ -89,10 +90,11 @@ Route::post('/cart/update', [CartController::class,'updateCart'])->name('front.u
 
 Route::get('/checkout', [CartController::class,'checkout'])->middleware('auth');
 
-Route::post('/checkout', [CartController::class,'processCheckout'])->name('front.store_checkout');
+Route::post('/checkout', [CartController::class,'processCheckout'])->name('front.store_checkout')->middleware('auth');
 
 Route::get('/checkout/{invoice}', [CartController::class,'checkoutFinish'])->name('front.finish_checkout');
 
-Route::get('/dashboard/orders', [DashboardOrderController::class,'index'])->name('customer.orders')->middleware('auth');
+Route::get('/dashboard/orders', [DashboardOrderController::class,'index'])->middleware('auth');
 
+Route::get('/dashboard/users', [DashboardUserController::class,'index'])->middleware('auth');
 

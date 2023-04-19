@@ -54,7 +54,9 @@ class DashboardOrderController extends Controller
     {
         $order = Order::with(['details', 'details.product', 'payment'])
         ->where('invoice', $invoice)->first();
-        return view('dashboard.orders.show', compact('orders'));
+        return view('dashboard.orders.show', [
+            'orders' => $order,
+        ])->with(compact('orders'));
     }
 
     /**

@@ -44,8 +44,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function customers()
+    // public function customers()
+    // {
+    //     return $this->hasMany(Customer::class);
+    // }
+
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
+
+    public function orders()
     {
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(Order::class);
     }
 }

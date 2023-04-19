@@ -47,7 +47,7 @@
                     <ul class="list">
                         <li>
                             <a href="#">
-                                <span>Alamat</span> : {{ $orders->customer_address }}</a>
+                                <span>Alamat</span> : {{ $orders->user_address }}</a>
                         </li>
                         <li>
                             <a href="#">
