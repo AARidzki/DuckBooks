@@ -17,6 +17,8 @@ class DashboardBookController extends Controller
      */
     public function index()
     {
+        // $this->authorize('admin');
+
         return view('dashboard.books.index', [
             'books' => Book::all()
         ]);

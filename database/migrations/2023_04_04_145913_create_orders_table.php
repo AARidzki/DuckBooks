@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('invoice');
-            $table->foreignId('customer_id');
-            $table->string('customer_name');
-            $table->string('customer_phone');
-            $table->string('customer_address');
+            $table->foreignId('user_id');
+            $table->string('user_name');
+            $table->string('user_phone');
+            $table->string('user_address');
             $table->string('subtotal');
             $table->timestamps();
         });

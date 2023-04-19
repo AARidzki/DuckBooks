@@ -13,7 +13,7 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 
 class CartController extends Controller
 {
@@ -92,7 +92,7 @@ private function getCarts()
     return $cart;
 }
 
-public function checkout()
+public function checkout(User $user)
 {
     $carts = $this->getCarts(); //MENGAMBIL DATA CART
     //MENGHITUNG SUBTOTAL DARI KERANJANG BELANJA (CART)
@@ -102,19 +102,21 @@ public function checkout()
     //ME-LOAD VIEW CHECKOUT.BLADE.PHP DAN PASSING DATA PROVINCES, CARTS DAN SUBTOTAL
     return view('checkout', [
         'tittle' => 'Cart',
-        'active' => 'login'
+        'active' => 'login',
+     // 'posts' => Post::where('user_id', auth()->user()->id)->get()
+        'users' => User::where('id', auth()->user()->id)->get(),
     ])->with(compact('carts', 'subtotal'));
 }
 
-public function processCheckout(Request $request)
+public function processCheckout(Request $request, User $user)
 {
     
     //VALIDASI DATANYA
     $this->validate($request, [
-        'customer_name' => 'required|string|max:100',
-        'customer_phone' => 'required',
+        'user_name' => 'required|string|max:100',
+        'user_phone' => 'required',
         'email' => 'required|email',
-        'customer_address' => 'required|string'
+        'user_address' => 'required|string'
     ]);
 
     //INISIASI DATABASE TRANSACTION
@@ -139,21 +141,24 @@ public function processCheckout(Request $request)
         });
 
         //SIMPAN DATA CUSTOMER BARU
-        $customers = Customer::create([
-            'name' => $request->customer_name,
-            'email' => $request->email,
-            'notelp' => $request->customer_phone,
-            'address' => $request->customer_address,
-            'status' => false
-        ]);
+        // $password = bcrypt('password');
+        // $user = User::where('id', $user->id)
+        // ->update([
+        //     'name' => $request->user_name,
+        //     'email' => $request->email,
+        //     'password' => $password,
+        //     'notelp' => $request->user_phone,
+        //     'address' => $request->user_address,
+        //     'status' => false
+        // ]);
 
         //SIMPAN DATA ORDER
         $orders = Order::create([
             'invoice' => Str::random(4) . '-' . time(), //INVOICENYA KITA BUAT DARI STRING RANDOM DAN WAKTU
-            'customer_id' => $customers->id,
-            'customer_name' => $customers->name,
-            'customer_phone' => $request->customer_phone,
-            'customer_address' => $request->customer_address,
+            'user_id' => $request->user_id,
+            'user_name' => $request->user_name,
+            'user_phone' => $request->user_phone,
+            'user_address' => $request->user_address,
             'subtotal' => $subtotal
         ]);
 

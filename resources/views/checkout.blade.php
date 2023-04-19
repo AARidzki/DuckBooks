@@ -10,11 +10,16 @@
               @endif
         <form action="{{ route('front.store_checkout') }}" method="POST">
             @csrf
-            <input type="text" class="form-control mb-3" name="customer_name" placeholder="Nama Lengkap" required>
-            <p class="text-danger">{{ $errors->first('customer_name') }}</p>
-            <input type="text" class="form-control mb-3" name="customer_phone" placeholder="No Telepon" required>
-            <input type="text" class="form-control mb-3" name="email" placeholder="Email" required>
-            <input type="text" class="form-control mb-3" name="customer_address" placeholder="Alamat Lengkap" required>
+            @foreach ($users as $user)
+            
+            <input type="hidden" class="form-control mb-3" name="user_id" placeholder="ID User" required value="{{ $user->id }}">
+            <input type="text" class="form-control mb-3" name="user_name" placeholder="Nama Lengkap" required value="{{ $user->name }}">
+            <p class="text-danger">{{ $errors->first('user_name') }}</p>
+            <input type="text" class="form-control mb-3" name="user_phone" placeholder="No Telepon" required value="{{ $user->notelp }}">
+            <input type="text" class="form-control mb-3" name="email" placeholder="Email" required value="{{ $user->email }}">
+            <input type="text" class="form-control mb-3" name="user_address" placeholder="Alamat Lengkap" required value="{{ $user->address }}">
+                
+            @endforeach
         </div>
     </div>
 
