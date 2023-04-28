@@ -49,8 +49,14 @@ Route::get('/about', function () {
     return view('about', [
         'tittle' => "About",
         'active' => 'about',
-        'nama' => "Uyun Duck",
-        'email' => "duck.book@gmail.com",
+        'nama' => "Alfi Akbar Ridzki",
+        'email' => "akbaralfi66@gmail.com",
+
+        'nama1' => "Galang Yoga Pratama",
+        'email1' => "galang058@gmail.com",
+        
+        'nama2' => "Uyun Duck",
+        'email2' => "duck.book@gmail.com",
 
     ]);
 });
