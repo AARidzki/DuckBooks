@@ -40,7 +40,7 @@ public function tambah(Request $request){
 }
 $cookie = Cookie::queue('buku-keranjang', json_encode($cart), 2880);
     //STORE KE BROWSER UNTUK DISIMPAN
-    return redirect()->back()->cookie('buku-keranjang', json_encode($cart), 2880);
+    return redirect()->back()->cookie('buku-keranjang', json_encode($cart), 2880)->with('success', 'Buku berhasil ditambahkan ke keranjang');
   
 
 }
@@ -122,11 +122,11 @@ public function processCheckout(Request $request, User $user)
     //INISIASI DATABASE TRANSACTION
     //DATABASE TRANSACTION BERFUNGSI UNTUK MEMASTIKAN SEMUA PROSES SUKSES UNTUK KEMUDIAN DI COMMIT AGAR DATA BENAR BENAR DISIMPAN, JIKA TERJADI ERROR MAKA KITA ROLLBACK AGAR DATANYA SELARAS
     DB::beginTransaction();
-    try {
-        //CHECK DATA CUSTOMER BERDASARKAN EMAIL
+    try {   
+        // CHECK DATA CUSTOMER BERDASARKAN EMAIL
         // $customer = Customer::where('email', $request->email)->first();
         
-        //JIKA DIA TIDAK LOGIN DAN DATA CUSTOMERNYA ADA
+        // JIKA DIA TIDAK LOGIN DAN DATA CUSTOMERNYA ADA
         // if (!auth()->check() && $customer) {
         
         //     //MAKA REDIRECT DAN TAMPILKAN INSTRUKSI UNTUK LOGIN 

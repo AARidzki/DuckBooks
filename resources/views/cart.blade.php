@@ -87,7 +87,7 @@
 							@endforeach
 							<tr class="bottom_button">
 								<td>
-									<button class="gray_btn">Update Cart</button>
+									<button class="btn btn-secondary">Update Cart</button>
 								</td>
 								<td></td>
 								<td></td>
@@ -154,8 +154,8 @@
 								<td></td>
 								<td>
 									<div class="checkout_btn_inner">
-										<a class="gray_btn" href="/books">Continue Shopping</a>
-										<a class="main_btn" href="/checkout">Proceed to checkout</a>
+										<a class="btn btn-secondary" href="/books">Continue Shopping</a>
+										<a class="btn btn-info" href="/checkout">Proceed to checkout</a>
 									</div>
 								</td>
 							</tr>

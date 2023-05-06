@@ -5,9 +5,11 @@
 <div class="row">
     <div class="col-md-6">
     <h1>Informasi Pengiriman</h1>
+
     @if (session('error'))
-                  <div class="alert alert-danger">{{ session('error') }}</div>
-              @endif
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
         <form action="{{ route('front.store_checkout') }}" method="POST">
             @csrf
             @foreach ($users as $user)

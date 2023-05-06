@@ -1,7 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1 class="mb-3">Buku Rekomendasi</h1>
+    <h1 class="mb-3">Semua Buku</h1>
+
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="container">
         <div class="row">
@@ -15,7 +21,30 @@
                             <h5 class="card-title"><a href="/books/{{ $book['slug'] }}">{{ $book['tittle'] }}</a></h5>
                             <p class="card-text">{{ $book['pengarang'] }}</p>
                             <br>
-                            <small class="card-text">Rp {{ $book['harga'] }}</small>
+                            <small class="card-text">Rp {{ number_format($book['harga']) }}</small>
+
+                            <!-- TAMBAHKAN FORM ACTION -->
+                            <form action="{{ route('front.cart') }}" method="POST">
+                              @csrf
+                              <div class="product_count">
+                                {{-- <label for="qty">Quantity:</label> --}}
+                                <input type="hidden" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                
+                                <!-- BUAT INPUTAN HIDDEN YANG BERISI ID PRODUK -->
+                                <input type="hidden" name="id" value="{{ $book['id'] }}" class="form-control">
+                                
+
+                                  <i class="lnr lnr-chevron-down"></i>
+                                </button>
+                              </div>
+                              <div class="card_area">
+                                
+                                <!-- UBAH JADI BUTTON -->
+                                <button class="btn btn-info">Add to Cart</button>
+                                <!-- UBAH JADI BUTTON -->
+                                
+                              </div>
+                            </form>
 
                         </div>
                     </div>
@@ -25,28 +54,7 @@
 
 <p></p>
 
-<!-- TAMBAHKAN FORM ACTION -->
-<form action="{{ route('front.cart') }}" method="POST">
-  @csrf
-  <div class="product_count">
-    <label for="qty">Quantity:</label>
-    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-    
-    <!-- BUAT INPUTAN HIDDEN YANG BERISI ID PRODUK -->
-    <input type="hidden" name="id" value="{{ $book['id'] }}" class="form-control">
-    
 
-      <i class="lnr lnr-chevron-down"></i>
-    </button>
-  </div>
-  <div class="card_area">
-    
-    <!-- UBAH JADI BUTTON -->
-    <button class="main_btn">Add to Cart</button>
-    <!-- UBAH JADI BUTTON -->
-    
-  </div>
-</form>
 
 <!-- CODE SETELAHNYA -->
 
