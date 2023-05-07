@@ -2,37 +2,67 @@
 
 @section('container')
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Edit Categories</h1>
-</div>
-
-<div class="col-lg-8">
-    <form method="POST" action="/dashboard/categories/{{ $categories->id }}" class="mb-5" enctype="multipart/form-data">
-        @method('put')
-        @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Category Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                required autofocus value="{{ old('name', $categories->name) }}">
-            @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>Pesanan Diterima</h2>
+                {{-- <div class="page_link">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="">Invoice</a>
+                </div> --}}
+            </div>
         </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
 
-
-        {{-- <div class="mb-3">
-            <label for="image" class="form-label">Post Image</label>
-            <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-            @error('image')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-          </div> --}}
-
-
-
-        <button type="submit" class="btn btn-primary">Update Categories</button>
-    </form>
-</div>
+<!--================Order Details Area =================-->
+<section class="order_details p_120">
+    <div class="container">
+        <h3 class="title_confirmation text-center text-success mb-5">Terima kasih, pesanan anda telah kami terima.</h3>
+        <div class="row order_d_inner">
+            <div class="col-lg-6">
+                <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h4>Informasi Pesanan</h4>
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            
+                                <span>Invoice</span> : {{ $orders->invoice }}
+                        </li>
+                        <li class="list-group-item">
+                            
+                                <span>Tanggal</span> : {{ $orders->created_at }}
+                        </li>
+                        <li class="list-group-item">
+                            
+                                <span>Total</span> : Rp {{ number_format($orders->subtotal) }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="col-lg-6">
+                <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h4>Informasi Pemesan</h4>
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            
+                                <span>Alamat</span> : {{ $orders->user_address }}
+                        </li>
+                        <li class="list-group-item">
+                            
+                                <span>Country</span> : Indonesia
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection

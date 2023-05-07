@@ -52,10 +52,12 @@ class DashboardOrderController extends Controller
      */
     public function show($invoice)
     {
-        $order = Order::with(['details', 'details.product', 'payment'])
-        ->where('invoice', $invoice)->first();
-        return view('dashboard.orders.show', [
-            'orders' => $order,
+        //AMBIL DATA PESANAN BERDASARKAN INVOICE
+        $orders = Order::where('invoice', $invoice)->first();
+        //LOAD VIEW checkout_finish.blade.php DAN PASSING DATA ORDER
+         return view('checkout_finish', [
+        'tittle' => 'Cart',
+        'active' => 'login'
         ])->with(compact('orders'));
     }
 

@@ -43,17 +43,96 @@ Route::get('/home', function () {
     ]);
 });
 
+$about_me = [
+    [
+        'nama' => "Alfi Akbar Ridzki",
+        'email' => "akbaralfi66@gmail.com",
+    ],
+    [
+        'nama' => "Galang Yoga Pratama",
+        'email' => "galang058@gmail.com",
+    ],
+    [
+        'nama' => "Uyun Duck",
+        'email' => "duck.book@gmail.com",
+    ]
+    ];
+
 
 
 Route::get('/about', function () {
+    // $about_me = [
+    //     [
+    //         'id' => '1',
+    //         'nama' => "Alfi Akbar Ridzki",
+    //         'email' => "akbaralfi66@gmail.com",
+    //         'img' => "img/alfi.jpg"
+    //     ],
+    //     [
+    //         'id' => '2',
+    //         'nama' => "Galang Yoga Pratama",
+    //         'email' => "galang058@gmail.com",
+    //         'img' => "img/galang1.JPG"
+    //     ],
+    //     [
+    //         'id' => '3',
+    //         'nama' => "Uyun Duck",
+    //         'email' => "duck.book@gmail.com",
+    //         'img' => "img/nurul1.JPG"
+    //     ]
+    //     ];
+
     return view('about', [
         'tittle' => "About",
         'active' => 'about',
-        'nama' => "Uyun Duck",
-        'email' => "duck.book@gmail.com",
+        // "abouts" => $about_me
+ 
+        'nama' => "Alfi Akbar Ridzki",
+        'email' => "akbaralfi66@gmail.com",
+
+        'nama1' => "Galang Yoga Pratama",
+        'email1' => "galang058@gmail.com",
+
+        'nama2' => "Uyun Duck",
+        'email2' => "duck.book@gmail.com",
 
     ]);
 });
+
+// Route::get('abouts/{id}', function($id) {
+//     $about_me = [
+//         [
+//             'id' => '1',
+//             'nama' => "Alfi Akbar Ridzki",
+//             'email' => "akbaralfi66@gmail.com",
+//             'img' => "img/alfi.jpg"
+//         ],
+//         [
+//             'id' => '2',
+//             'nama' => "Galang Yoga Pratama",
+//             'email' => "galang058@gmail.com",
+//             'img' => "img/galang1.JPG"
+//         ],
+//         [
+//             'id' => '3',
+//             'nama' => "Uyun Duck",
+//             'email' => "duck.book@gmail.com",
+//             'img' => "img/nurul1.JPG"
+//         ]
+//         ];
+
+//         $new_about = [];
+//         foreach($about_me as $about) {
+//             if($about["id"] === $id)
+//             $new_about = $about;
+//         }
+
+//     return view('about', [
+//         "tittle" => "Single About",
+//         "active" => "abouts",
+//         "about" => $new_about
+//     ]);
+// });
 
 Route::controller(BookController::class)->group(function() {
     Route::get('/books', [BookController::class, 'index']);
