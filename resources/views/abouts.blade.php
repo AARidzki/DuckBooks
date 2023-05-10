@@ -4,15 +4,19 @@
     <h1>Halaman About</h1>
     <br>
 
-    @foreach ($abouts as $about)
-    <article class="mb-5">
-        <h3>
-            <a href="/abouts/{{ $about["id"] }}">{{ $about["nama"] }}</a>
-        </h3>
-        <p>{{ $about["email"] }}</p>
-        <img src="{{ $about["img"] }}" alt="">
-    </article>
-    @endforeach
+    <div class="container">
+        <div class="row">
+            @foreach ($abouts as $about)
+            <div class="col-md-4">
+                <h3>
+                    <a href="/abouts/{{ $about["id"] }}">{{ $about["nama"] }}</a>
+                </h3>
+                <p>{{ $about["email"] }}</p>
+                <img src="{{ $about["img"] }}" alt="" style="max-height: 200px; max-width: 200px; overflow: hidden;">
+            </div>
+            @endforeach
+        </div>
+    </div>
 
     {{-- <h1>Halaman About</h1>
     <br>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
         <a class="navbar-brand" href="/">Duck Book</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $tittle === 'About' ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{ $tittle === 'Abouts' ? 'active' : '' }}" href="/abouts">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $tittle === 'Books' ? 'active' : '' }}" aria-current="page"

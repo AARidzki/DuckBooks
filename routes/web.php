@@ -15,6 +15,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\DashboardFotoController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardUserController;
+use App\Models\About;
 use Illuminate\Database\Schema\IndexDefinition;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -43,96 +44,24 @@ Route::get('/home', function () {
     ]);
 });
 
-$about_me = [
-    [
-        'nama' => "Alfi Akbar Ridzki",
-        'email' => "akbaralfi66@gmail.com",
-    ],
-    [
-        'nama' => "Galang Yoga Pratama",
-        'email' => "galang058@gmail.com",
-    ],
-    [
-        'nama' => "Uyun Duck",
-        'email' => "duck.book@gmail.com",
-    ]
-    ];
 
 
 
-Route::get('/about', function () {
-    // $about_me = [
-    //     [
-    //         'id' => '1',
-    //         'nama' => "Alfi Akbar Ridzki",
-    //         'email' => "akbaralfi66@gmail.com",
-    //         'img' => "img/alfi.jpg"
-    //     ],
-    //     [
-    //         'id' => '2',
-    //         'nama' => "Galang Yoga Pratama",
-    //         'email' => "galang058@gmail.com",
-    //         'img' => "img/galang1.JPG"
-    //     ],
-    //     [
-    //         'id' => '3',
-    //         'nama' => "Uyun Duck",
-    //         'email' => "duck.book@gmail.com",
-    //         'img' => "img/nurul1.JPG"
-    //     ]
-    //     ];
-
-    return view('about', [
-        'tittle' => "About",
-        'active' => 'about',
-        // "abouts" => $about_me
- 
-        'nama' => "Alfi Akbar Ridzki",
-        'email' => "akbaralfi66@gmail.com",
-
-        'nama1' => "Galang Yoga Pratama",
-        'email1' => "galang058@gmail.com",
-
-        'nama2' => "Uyun Duck",
-        'email2' => "duck.book@gmail.com",
-
+Route::get('/abouts', function () {
+    return view('abouts', [
+        'tittle' => "Abouts",
+        'active' => 'abouts',
+        "abouts" => About::all()
     ]);
 });
 
-// Route::get('abouts/{id}', function($id) {
-//     $about_me = [
-//         [
-//             'id' => '1',
-//             'nama' => "Alfi Akbar Ridzki",
-//             'email' => "akbaralfi66@gmail.com",
-//             'img' => "img/alfi.jpg"
-//         ],
-//         [
-//             'id' => '2',
-//             'nama' => "Galang Yoga Pratama",
-//             'email' => "galang058@gmail.com",
-//             'img' => "img/galang1.JPG"
-//         ],
-//         [
-//             'id' => '3',
-//             'nama' => "Uyun Duck",
-//             'email' => "duck.book@gmail.com",
-//             'img' => "img/nurul1.JPG"
-//         ]
-//         ];
-
-//         $new_about = [];
-//         foreach($about_me as $about) {
-//             if($about["id"] === $id)
-//             $new_about = $about;
-//         }
-
-//     return view('about', [
-//         "tittle" => "Single About",
-//         "active" => "abouts",
-//         "about" => $new_about
-//     ]);
-// });
+Route::get('abouts/{id}', function($id) {
+    return view('about', [
+        "tittle" => "Single About",
+        "active" => "abouts",
+        "about" => About::find($id)
+    ]);
+});
 
 Route::controller(BookController::class)->group(function() {
     Route::get('/books', [BookController::class, 'index']);
@@ -174,6 +103,7 @@ Route::post('/checkout', [CartController::class,'processCheckout'])->name('front
 Route::get('/checkout/{invoice}', [CartController::class,'checkoutFinish'])->name('front.finish_checkout');
 
 Route::get('/dashboard/orders', [DashboardOrderController::class,'index'])->middleware('auth');
+Route::get('/dashboard/orders/{id}', [DashboardOrderController::class,'show'])->middleware('auth');
 
 Route::get('/dashboard/users', [DashboardUserController::class,'index'])->middleware('auth');
 

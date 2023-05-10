@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\OrderDetail;
 
 class DashboardOrderController extends Controller
 {
@@ -50,14 +51,15 @@ class DashboardOrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($invoice)
+    public function show(Order $orders, OrderDetail $orderDetail , $id)
     {
         //AMBIL DATA PESANAN BERDASARKAN INVOICE
-        $orders = Order::where('invoice', $invoice)->first();
+        // $orders = Order::where('id', $id)->firstWhere('id');
         //LOAD VIEW checkout_finish.blade.php DAN PASSING DATA ORDER
-         return view('checkout_finish', [
-        'tittle' => 'Cart',
-        'active' => 'login'
+         return view('dashboard.orders.show', [
+        // 'tittle' => 'Cart',
+        // 'active' => 'login',
+        'orders' => $orders
         ])->with(compact('orders'));
     }
 

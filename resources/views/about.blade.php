@@ -3,15 +3,15 @@
     
     <!-- jumbotron -->
 <section class="jumbotron text-center">
-    <img src="img/alfi.jpg" alt="hehe" class="rounded-circle">
+    <img src="{{ $about["img1"] }}" alt="hehe" class="rounded-circle">
     <h1 class="display-4">Alfi Akbar Ridzki</h1>
     <p class="lead">Fresh Graduate</p>
-    <img src="img/skills/html.png" class="rounded-square" alt="html.png">
-    <img src="img/skills/css.png" class="rounded-square" alt="css.png">
-    <img src="img/skills/javascript.png" class="rounded-square" alt="javascript.png">
-    <img src="img/skills/java.jpg" class="rounded-square" alt="java.jpg">
-    <img src="img/skills/PHP.png" class="rounded-square" alt="php.png">
-    <img src="img/skills/laravel.png" class="rounded-square" alt="laravel.png">
+    <img src="../img/skills/html.png" class="rounded-square" alt="html.png">
+    <img src="../img/skills/css.png" class="rounded-square" alt="css.png">
+    <img src="../img/skills/javascript.png" class="rounded-square" alt="javascript.png">
+    <img src="../img/skills/java.jpg" class="rounded-square" alt="java.jpg">
+    <img src="../img/skills/PHP.png" class="rounded-square" alt="php.png">
+    <img src="../img/skills/laravel.png" class="rounded-square" alt="laravel.png">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="#ffffff" fill-opacity="1"
         d="M0,160L48,138.7C96,117,192,75,288,96C384,117,480,203,576,229.3C672,256,768,224,864,197.3C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="img/projects/1.jpg" class="card-img-top" alt="1.jpg">
+                    <img src="../img/projects/1.jpg" class="card-img-top" alt="1.jpg">
                     <div class="card-body">
                         <p class="card-text">Aplikasi Manajemen Inventory berbasis Dekstop.</p>
                     </div>
@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="img/projects/2.jpg" class="card-img-top" alt="2.jpg">
+                    <img src="../img/projects/2.jpg" class="card-img-top" alt="2.jpg">
                     <div class="card-body">
                         <p class="card-text">Aplikasi Manajemen Aset Berbasis Dekstop.</p>
                     </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <img src="img/projects/3.jpg" class="card-img-top" alt="3.jpg">
+                    <img src="../img/projects/3.jpg" class="card-img-top" alt="3.jpg">
                     <div class="card-body">
                         <p class="card-text">Penjualan Buku berbasis web.</p>
                     </div>

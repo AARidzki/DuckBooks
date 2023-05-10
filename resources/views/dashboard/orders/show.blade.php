@@ -1,8 +1,6 @@
+
 @extends('layouts.ecommerce')
 
-@section('title')
-    <title>Order {{ $orders->invoice }} - DW Ecommerce</title>
-@endsection
 
 @section('content')
     <!--================Home Banner Area =================-->
@@ -10,10 +8,10 @@
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content text-center">
-					<h2>Order {{ $orders->invoice }}</h2>
+					<h2>Order {{ $orders->id }}</h2>
 					<div class="page_link">
             <a href="{{ url('/') }}">Home</a>
-            <a href="{{ route('customer.orders') }}">Order {{ $orders->invoice }}</a>
+            <a href="{{ route('customer.orders') }}">Order {{ $orders->id }}</a>
 					</div>
 				</div>
 			</div>
